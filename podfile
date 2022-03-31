@@ -1,0 +1,6 @@
+
+target 'Practice2' do
+  use_frameworks!
+  pod 'Alamofire', '~> 4.4'
+end
+
