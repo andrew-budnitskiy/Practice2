@@ -8,19 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		739D24B33AD1165E343599C4 /* Pods_Practice2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D48D78FECF3172844C2E8C9F /* Pods_Practice2.framework */; };
-		CECF258D27F5D1360018DBAA /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF257E27F5D1360018DBAA /* APIHelper.swift */; };
-		CECF258E27F5D1360018DBAA /* AlamofireImplementations.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF257F27F5D1360018DBAA /* AlamofireImplementations.swift */; };
-		CECF258F27F5D1360018DBAA /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258027F5D1360018DBAA /* JSONValue.swift */; };
-		CECF259027F5D1360018DBAA /* SourcesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258227F5D1360018DBAA /* SourcesAPI.swift */; };
-		CECF259127F5D1360018DBAA /* CodableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258327F5D1360018DBAA /* CodableHelper.swift */; };
-		CECF259227F5D1360018DBAA /* JSONEncodableEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258427F5D1360018DBAA /* JSONEncodableEncoding.swift */; };
-		CECF259327F5D1360018DBAA /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258527F5D1360018DBAA /* APIs.swift */; };
-		CECF259427F5D1360018DBAA /* Source.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258727F5D1360018DBAA /* Source.swift */; };
-		CECF259527F5D1360018DBAA /* SourceSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258827F5D1360018DBAA /* SourceSources.swift */; };
-		CECF259627F5D1360018DBAA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258927F5D1360018DBAA /* Extensions.swift */; };
-		CECF259727F5D1360018DBAA /* JSONEncodingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258A27F5D1360018DBAA /* JSONEncodingHelper.swift */; };
-		CECF259827F5D1360018DBAA /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258B27F5D1360018DBAA /* Models.swift */; };
-		CECF259927F5D1360018DBAA /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECF258C27F5D1360018DBAA /* Configuration.swift */; };
 		CEE61E3F27F46CF1009F111C /* Practice2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE61E3E27F46CF1009F111C /* Practice2App.swift */; };
 		CEE61E4127F46CF2009F111C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE61E4027F46CF2009F111C /* ContentView.swift */; };
 		CEE61E4327F46CF5009F111C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE61E4227F46CF5009F111C /* Assets.xcassets */; };
@@ -30,19 +17,6 @@
 /* Begin PBXFileReference section */
 		7FFF11672A2DFCEB81F5B3C5 /* Pods-Practice2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Practice2.debug.xcconfig"; path = "Target Support Files/Pods-Practice2/Pods-Practice2.debug.xcconfig"; sourceTree = "<group>"; };
 		965DFF08A75B19560509A10F /* Pods-Practice2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Practice2.release.xcconfig"; path = "Target Support Files/Pods-Practice2/Pods-Practice2.release.xcconfig"; sourceTree = "<group>"; };
-		CECF257E27F5D1360018DBAA /* APIHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
-		CECF257F27F5D1360018DBAA /* AlamofireImplementations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireImplementations.swift; sourceTree = "<group>"; };
-		CECF258027F5D1360018DBAA /* JSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
-		CECF258227F5D1360018DBAA /* SourcesAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourcesAPI.swift; sourceTree = "<group>"; };
-		CECF258327F5D1360018DBAA /* CodableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodableHelper.swift; sourceTree = "<group>"; };
-		CECF258427F5D1360018DBAA /* JSONEncodableEncoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEncodableEncoding.swift; sourceTree = "<group>"; };
-		CECF258527F5D1360018DBAA /* APIs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
-		CECF258727F5D1360018DBAA /* Source.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Source.swift; sourceTree = "<group>"; };
-		CECF258827F5D1360018DBAA /* SourceSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceSources.swift; sourceTree = "<group>"; };
-		CECF258927F5D1360018DBAA /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		CECF258A27F5D1360018DBAA /* JSONEncodingHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONEncodingHelper.swift; sourceTree = "<group>"; };
-		CECF258B27F5D1360018DBAA /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		CECF258C27F5D1360018DBAA /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		CEE61E3B27F46CF1009F111C /* Practice2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Practice2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE61E3E27F46CF1009F111C /* Practice2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice2App.swift; sourceTree = "<group>"; };
 		CEE61E4027F46CF2009F111C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -80,43 +54,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CECF257D27F5D1360018DBAA /* Swaggers */ = {
-			isa = PBXGroup;
-			children = (
-				CECF257E27F5D1360018DBAA /* APIHelper.swift */,
-				CECF257F27F5D1360018DBAA /* AlamofireImplementations.swift */,
-				CECF258027F5D1360018DBAA /* JSONValue.swift */,
-				CECF258127F5D1360018DBAA /* APIs */,
-				CECF258327F5D1360018DBAA /* CodableHelper.swift */,
-				CECF258427F5D1360018DBAA /* JSONEncodableEncoding.swift */,
-				CECF258527F5D1360018DBAA /* APIs.swift */,
-				CECF258627F5D1360018DBAA /* Models */,
-				CECF258927F5D1360018DBAA /* Extensions.swift */,
-				CECF258A27F5D1360018DBAA /* JSONEncodingHelper.swift */,
-				CECF258B27F5D1360018DBAA /* Models.swift */,
-				CECF258C27F5D1360018DBAA /* Configuration.swift */,
-			);
-			name = Swaggers;
-			path = "../../../../../../Downloads/swift5-client-generated (6)/SwaggerClient/Classes/Swaggers";
-			sourceTree = "<group>";
-		};
-		CECF258127F5D1360018DBAA /* APIs */ = {
-			isa = PBXGroup;
-			children = (
-				CECF258227F5D1360018DBAA /* SourcesAPI.swift */,
-			);
-			path = APIs;
-			sourceTree = "<group>";
-		};
-		CECF258627F5D1360018DBAA /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				CECF258727F5D1360018DBAA /* Source.swift */,
-				CECF258827F5D1360018DBAA /* SourceSources.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		CEE61E3227F46CF1009F111C = {
 			isa = PBXGroup;
 			children = (
@@ -138,7 +75,6 @@
 		CEE61E3D27F46CF1009F111C /* Practice2 */ = {
 			isa = PBXGroup;
 			children = (
-				CECF257D27F5D1360018DBAA /* Swaggers */,
 				CEE61E3E27F46CF1009F111C /* Practice2App.swift */,
 				CEE61E4027F46CF2009F111C /* ContentView.swift */,
 				CEE61E4227F46CF5009F111C /* Assets.xcassets */,
@@ -269,21 +205,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CECF258D27F5D1360018DBAA /* APIHelper.swift in Sources */,
-				CECF259727F5D1360018DBAA /* JSONEncodingHelper.swift in Sources */,
-				CECF259527F5D1360018DBAA /* SourceSources.swift in Sources */,
-				CECF259127F5D1360018DBAA /* CodableHelper.swift in Sources */,
-				CECF259027F5D1360018DBAA /* SourcesAPI.swift in Sources */,
 				CEE61E4127F46CF2009F111C /* ContentView.swift in Sources */,
-				CECF259927F5D1360018DBAA /* Configuration.swift in Sources */,
-				CECF259227F5D1360018DBAA /* JSONEncodableEncoding.swift in Sources */,
-				CECF258E27F5D1360018DBAA /* AlamofireImplementations.swift in Sources */,
-				CECF259627F5D1360018DBAA /* Extensions.swift in Sources */,
 				CEE61E3F27F46CF1009F111C /* Practice2App.swift in Sources */,
-				CECF259327F5D1360018DBAA /* APIs.swift in Sources */,
-				CECF259427F5D1360018DBAA /* Source.swift in Sources */,
-				CECF258F27F5D1360018DBAA /* JSONValue.swift in Sources */,
-				CECF259827F5D1360018DBAA /* Models.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
