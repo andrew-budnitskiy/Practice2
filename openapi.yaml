@@ -1,0 +1,121 @@
+openapi: 3.0.1
+servers:
+    - url: https:/
+info:
+  title: News source
+  version: 1.0.0
+  description: This is a new source api generator
+  termsOfService: http://swagger.io/terms/
+tags:
+  - name: sources
+    description: Operations about user
+    externalDocs:
+      description: Find out more about our store
+      url: http://swagger.io
+paths:
+  /newsapi.org/v2/top-headlines/sources:
+    get:
+      tags:
+        - sources
+      summary: Get news sources list
+      operationId: newsApiSources
+      parameters:
+        - in: query
+          name: apiKey
+          required: false
+          schema:
+            type: string
+            default: c74e894ef21646e28347927d57a85b87
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SourceNewsApi'
+        '400':
+          description: Invalid status value
+          content: {}
+  /newsdata.io/api/1/sources:
+    get:
+      tags:
+        - sources
+      summary: Get news sources list
+      operationId: newsDataSources
+      parameters:
+        - in: query
+          name: apikey
+          required: false
+          schema:
+            type: string
+            default: pub_6104174df9dc7974a0cc89668d388e41d47c
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SourceNewsData'
+        '400':
+          description: Invalid status value
+          content: {}
+components:
+  schemas:
+    SourceNewsApi:
+      type: object
+      properties:
+        status:
+          type: string
+        sources:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              url:
+                type: string
+              category:
+                type: string
+              language:
+                type: string
+              country:
+                type: string
+    SourceNewsData:
+      type: object
+      properties:
+        status:
+          type: string
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              url:
+                type: string
+              description:
+                type: string
+              category:
+                type: array
+                items:
+                  type: string
+              language:
+                type: array
+                items:
+                  type: string
+              country:
+                type: array
+                items:
+                  type: string
