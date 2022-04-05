@@ -3,6 +3,7 @@ import SwiftUI
 struct LoadingIndicatorModifier: ViewModifier {
 
     private(set) var isLoading: Bool
+    private(set) var onTop: Bool
 
     func body(content: Content) -> some View {
         if isLoading {
@@ -18,7 +19,10 @@ struct LoadingIndicatorModifier: ViewModifier {
 
     func withLoading(content: Content) -> some View {        
         return VStack {
-            content
+
+            if !onTop {
+                content
+            }
             Divider()
             HStack {
                 Spacer()
@@ -26,6 +30,10 @@ struct LoadingIndicatorModifier: ViewModifier {
                     .progressViewStyle(CircularProgressViewStyle())
                 Spacer()
             }
+            if onTop {
+                content
+            }
+
         }
     }
 }

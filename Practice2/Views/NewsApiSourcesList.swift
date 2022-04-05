@@ -8,34 +8,29 @@
 import Foundation
 import SwiftUI
 
-struct NewsApiList: View {
+struct NewsApiSourcesList: View {
     @StateObject private var viewModel = NewsApiSourcesViewModel()
 
     var body: some View {
         List {
             ForEach(viewModel.list) { source in
-                let isLastCharacter = viewModel.list.isLastItem(source)
                 NewsApiSourceCell(name: source.name ?? "")
-                    .onAppear {
-                        if isLastCharacter && viewModel.canLoad {
-                            viewModel.fetchData()
-                        }
-                    }
-                    .showActivityIdicator(
-                        viewModel.canLoad == false && isLastCharacter
-                    )
             }
         }
+        .showActivityIdicator(viewModel.list.count == 0,
+                              onTop: true)
+        .listStyle(.plain)
         .onAppear {
             viewModel.fetchData()
         }
         .navigationBarTitle(Text("News sources"))
+
     }
 }
 
 struct NewsApiList_Previews: PreviewProvider {
     static var previews: some View {
-        NewsApiList()
+        NewsApiSourcesList()
     }
 }
 

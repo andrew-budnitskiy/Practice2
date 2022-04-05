@@ -7,9 +7,28 @@
 
 import SwiftUI
 
+
+enum NewsItem: Int, Hashable {
+    case newsApi
+    case newsData
+}
+
+extension NewsItem {
+
+    var title: String {
+        switch self {
+        case .newsApi:
+            return "NewsApi"
+        case .newsData:
+            return "NewsData"
+        }
+    }
+
+}
+
 struct ContentView: View {
 
-    @State var favoriteColor = "General"
+    @State var selectedNewsSource = NewsItem.newsApi
 
     var body: some View {
         self.segmentedControl()
@@ -25,30 +44,44 @@ extension ContentView {
 
     private func segmentedControl() -> some View {
 
-        struct SegmentedItem: Hashable {
-            let title: String
-            let category: String
-        }
-
-        let items: [SegmentedItem] = [SegmentedItem(title: "General", category: "general"),
-                                      SegmentedItem(title: "Business", category: "business"),
-                                      SegmentedItem(title: "Sports", category: "sports")]
+        let items: [NewsItem] = [.newsApi, .newsData]
 
         return VStack {
-                    Picker("What is your favorite color?", selection: $favoriteColor) {
+                    Picker("Select a news source?", selection: $selectedNewsSource) {
 
                         ForEach(items, id: \.self ) {
                             Text($0.title)
-                                .tag($0.title)
+                                .tag($0.rawValue)
                         }
                     }
                     .pickerStyle(.segmented)
 
-                    Text("Value: \(favoriteColor)")
+            Text("Selected: \(selectedNewsSource.title)")
+            switch self.selectedNewsSource {
+
+            case .newsApi:
+                NewsApiSourcesList()
+            case .newsData:
+                NewsDataSourcesList()
+
+            }
+
             Spacer()
-                }
+            }
 
     }
+
+//    private func newsList() -> View {
+//        switch self.selectedNewsSource {
+//
+//        case .newsApi:
+//            return NewsApiList()
+//        case .newsData:
+//            return NewsDataList()
+//
+//        }
+//
+//    }
 
 }
 

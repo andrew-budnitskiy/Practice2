@@ -7,6 +7,17 @@
 
 import Foundation
 
+extension Optional where Wrapped == String {
+    func or(_ value: String) -> String {
+        switch self {
+        case .none: return value
+        case .some: return self!
+        }
+    }
+
+}
+
+
 extension String {
 
     static func random(length: Int = 10) -> String {
@@ -18,6 +29,20 @@ extension String {
             randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
         }
         return randomString
+    }
+
+}
+
+extension Date {
+
+    func toString(withFormat format: String) -> String {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+
+        return dateFormatter.string(from: self)
+
     }
 
 }
