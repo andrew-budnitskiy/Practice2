@@ -10,7 +10,7 @@ import SwiftUI
 
 class NavigationContainerViewModel : ObservableObject {
     @Published var currentScreen: Screen?
-    var navigationType: NavigationType = .push
+    var transition: AnyTransition? = nil
     
     var screenStack = NavigationStack() {
         didSet {
@@ -19,18 +19,18 @@ class NavigationContainerViewModel : ObservableObject {
     }
     
     func push(screenView: AnyView) {
-        self.navigationType = .push
+        self.transition = .backslide
         let screen = Screen(view: screenView)
         screenStack.push(screen)
     }
     
     func pop() {
-        self.navigationType = .pop
+        self.transition = .slide
         screenStack.pop()
     }
     
     func popToRoot() {
-        self.navigationType = .popToRoot
+        self.transition = .slide
         screenStack.popToRoot()
     }
 }

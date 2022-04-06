@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Optional where Wrapped == String {
     func or(_ value: String) -> String {
@@ -45,4 +46,11 @@ extension Date {
 
     }
 
+}
+
+extension AnyTransition {
+    static var backslide: AnyTransition {
+        AnyTransition.asymmetric(
+            insertion: .move(edge: .trailing),
+            removal: .move(edge: .leading))}
 }

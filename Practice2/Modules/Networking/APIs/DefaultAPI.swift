@@ -21,7 +21,7 @@ open class DefaultAPI {
      */
     open class func newsApiResults(sources: String,
                                    page: Int,
-                                   pageSize: Int? = 25,
+                                   pageSize: Int? = 10,
                                    apiKey: String? = "c74e894ef21646e28347927d57a85b87",
                                    completion: @escaping ((_ data: NewsApiResults?,
                                                            _ error: Error?) -> Void)) {
@@ -102,7 +102,7 @@ open class DefaultAPI {
      */
     open class func newsApiResultsWithRequestBuilder(sources: String,
                                                      page: Int,
-                                                     pageSize: Int? = 25,
+                                                     pageSize: Int? = 10,
                                                      apiKey: String? = "c74e894ef21646e28347927d57a85b87") -> RequestBuilder<NewsApiResults> {
         let path = "/newsapi.org/v2/everything"
         let URLString = SwaggerClientAPI.basePath + path
@@ -114,7 +114,6 @@ open class DefaultAPI {
                         "pageSize": pageSize?.encodeToJSON(), 
                         "apiKey": apiKey
         ])
-
 
         let requestBuilder: RequestBuilder<NewsApiResults>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 

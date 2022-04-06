@@ -12,18 +12,24 @@ struct NewsApiSourcesList: View {
     @StateObject private var viewModel = NewsApiSourcesViewModel()
 
     var body: some View {
-        List {
-            ForEach(viewModel.list) { source in
-                NewsApiSourceCell(name: source.name ?? "")
+
+        NavigationContainerView {
+
+            List {
+                ForEach(viewModel.list) { source in
+                    NewsApiSourceCell(name: source.name ?? "",
+                                      sourceId: source._id ?? "")
+                }
             }
+            .showActivityIdicator(viewModel.list.count == 0,
+                                  onTop: true)
+            .listStyle(.plain)
+            .onAppear {
+                viewModel.fetchData()
+            }
+            .navigationBarTitle(Text("News sources"))
+
         }
-        .showActivityIdicator(viewModel.list.count == 0,
-                              onTop: true)
-        .listStyle(.plain)
-        .onAppear {
-            viewModel.fetchData()
-        }
-        .navigationBarTitle(Text("News sources"))
 
     }
 }

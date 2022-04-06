@@ -10,21 +10,29 @@ import Foundation
 import SwiftUI
 
 struct NewsApiSourceCell: View {
+
     let name: String
+    let sourceId: String
+    @EnvironmentObject private var router: NavigationContainerViewModel
 
     var body: some View {
         HStack {
-        Text(name)
-            .padding(5)
-        Spacer()
-        Image(systemName: "chevron.right")
-                .foregroundColor(.gray)
-        }
+
+            Button("\(name)") {
+
+                let newsList = NewsApiResultsList(viewModel: NewsApiResultsViewModel(withSource: self.sourceId))
+                router.push(screenView: newsList.toAnyView())
+
+            }
+            Spacer()
+            Image(systemName: "chevron.right")
+                    .foregroundColor(.gray)
+            }
     }
 }
 
 struct NewsApiSourceCell_Preview: PreviewProvider {
     static var previews: some View {
-        NewsApiSourceCell(name: "asdasda")
+        NewsApiSourceCell(name: "asdasda", sourceId: "Q")
     }
 }
