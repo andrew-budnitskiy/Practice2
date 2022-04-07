@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-class NewsDocSourcesViewModel : ObservableObject {
-    @Published var list: [NewsDataSource] = []
+class TheNewsApiSourcesViewModel : ObservableObject {
+    @Published var list: [TheNewsApiSource] = []
     var canLoad: Bool = true
 
     func fetchData() {
@@ -18,10 +18,10 @@ class NewsDocSourcesViewModel : ObservableObject {
         }
 
         canLoad = false
-        DefaultAPI.newsDataSources { [weak self]  data, error in
+        DefaultAPI.theNewsApiSources { [weak self]  data, error in
 
             if error == nil {
-                self?.list.append(contentsOf: (data?.results ?? []))
+                self?.list.append(contentsOf: (data?.data ?? []))
             } else {
                 print("Error \(String(describing: error))")
             }

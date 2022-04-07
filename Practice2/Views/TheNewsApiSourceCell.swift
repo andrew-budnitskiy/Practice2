@@ -9,7 +9,7 @@ import Foundation
 
 import SwiftUI
 
-struct NewsDocSourceCell: View {
+struct TheNewsApiSourceCell: View {
     let name: String
 
     var body: some View {

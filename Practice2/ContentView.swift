@@ -61,7 +61,7 @@ extension ContentView {
             case .newsApi:
                 NewsApiSourcesList()
             case .newsData:
-                NewsDataSourcesList()
+                TheNewsApiSourcesList()
 
             }
 

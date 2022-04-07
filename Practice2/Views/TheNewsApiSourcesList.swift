@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-struct NewsDataSourcesList: View {
-    @StateObject private var viewModel = NewsDocSourcesViewModel()
+struct TheNewsApiSourcesList: View {
+    @StateObject private var viewModel = TheNewsApiSourcesViewModel()
     
     var body: some View {
         List {
             ForEach(viewModel.list) { source in
-                NewsDocSourceCell(name: source.name ?? "")
+                TheNewsApiSourceCell(name: source.domain.or("-"))
             }
         }
         .showActivityIdicator(viewModel.list.count == 0,
@@ -29,7 +29,7 @@ struct NewsDataSourcesList: View {
 
 struct NewsDataList_Previews: PreviewProvider {
     static var previews: some View {
-        NewsDataSourcesList()
+        TheNewsApiSourcesList()
     }
 }
 

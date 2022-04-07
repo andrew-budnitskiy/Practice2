@@ -21,7 +21,7 @@ open class DefaultAPI {
      */
     open class func newsApiResults(sources: String,
                                    page: Int,
-                                   pageSize: Int? = 10,
+                                   pageSize: Int? = 25,
                                    apiKey: String? = "c74e894ef21646e28347927d57a85b87",
                                    completion: @escaping ((_ data: NewsApiResults?,
                                                            _ error: Error?) -> Void)) {
@@ -98,12 +98,12 @@ open class DefaultAPI {
      - parameter pageSize: (query)  (optional, default to 25)
      - parameter apiKey: (query)  (optional, default to c74e894ef21646e28347927d57a85b87)
 
-     - returns: RequestBuilder<[NewsApiResults]> 
+     - returns: RequestBuilder<NewsApiResults>
      */
     open class func newsApiResultsWithRequestBuilder(sources: String,
                                                      page: Int,
-                                                     pageSize: Int? = 10,
-                                                     apiKey: String? = "c74e894ef21646e28347927d57a85b87") -> RequestBuilder<NewsApiResults> {
+                                                     pageSize: Int? = nil,
+                                                     apiKey: String? = nil) -> RequestBuilder<NewsApiResults> {
         let path = "/newsapi.org/v2/everything"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -114,6 +114,7 @@ open class DefaultAPI {
                         "pageSize": pageSize?.encodeToJSON(), 
                         "apiKey": apiKey
         ])
+
 
         let requestBuilder: RequestBuilder<NewsApiResults>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
@@ -182,7 +183,7 @@ open class DefaultAPI {
 
      - returns: RequestBuilder<[NewsApiSources]> 
      */
-    open class func newsApiSourcesWithRequestBuilder(apiKey: String? = "c74e894ef21646e28347927d57a85b87") -> RequestBuilder<NewsApiSources> {
+    open class func newsApiSourcesWithRequestBuilder(apiKey: String? = nil) -> RequestBuilder<NewsApiSources> {
         let path = "/newsapi.org/v2/top-headlines/sources"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -197,78 +198,176 @@ open class DefaultAPI {
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
     /**
-     Get news sources list
+     Get the newsApi results list
 
-     - parameter apikey: (query)  (optional, default to pub_6104174df9dc7974a0cc89668d388e41d47c)
+     - parameter page: (query)  
+     - parameter limit: (query)  
+     - parameter apiToken: (query)  (optional, default to wVTpnmkmnAQudIaFoRgqZhyNcCMlbsA6Fd8fDR6i)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func newsDataSources(apikey: String? = "pub_6104174df9dc7974a0cc89668d388e41d47c",
-                                    completion: @escaping ((_ data: NewsDataSources?,
-                                                            _ error: Error?) -> Void)) {
-        newsDataSourcesWithRequestBuilder(apikey: apikey).execute { (response, error) -> Void in
+    open class func theNewsApiResults(page: Int,
+                                      limit: Int? = 25,
+                                      domains: String,
+                                      apiToken: String? = "wVTpnmkmnAQudIaFoRgqZhyNcCMlbsA6Fd8fDR6i",
+                                      completion: @escaping ((_ data: TheNewsApiResults?,
+                                                              _ error: Error?) -> Void)) {
+        theNewsApiResultsWithRequestBuilder(page: page,
+                                            limit: limit,
+                                            domains: domains,
+                                            apiToken: apiToken).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
 
 
     /**
-     Get news sources list
-     - GET /newsdata.io/api/1/sources
+     Get the newsApi results list
+     - GET /api.thenewsapi.com/v1/news/all
      - 
 
      - examples: [{contentType=application/json, example=[ {
-  "results" : [ {
-    "country" : [ "country", "country" ],
-    "name" : "name",
-    "description" : "description",
-    "language" : [ "language", "language" ],
-    "id" : "id",
-    "category" : [ "category", "category" ],
-    "url" : "url"
+  "data" : [ {
+    "domain" : "domain",
+    "language" : "language",
+    "source_id" : "source_id",
+    "categories" : [ "categories", "categories" ],
+    "locale" : "locale"
   }, {
-    "country" : [ "country", "country" ],
-    "name" : "name",
-    "description" : "description",
-    "language" : [ "language", "language" ],
-    "id" : "id",
-    "category" : [ "category", "category" ],
-    "url" : "url"
+    "domain" : "domain",
+    "language" : "language",
+    "source_id" : "source_id",
+    "categories" : [ "categories", "categories" ],
+    "locale" : "locale"
   } ],
-  "status" : "status"
+  "meta" : {
+    "found" : 0,
+    "limit" : 1,
+    "page" : 5,
+    "returned" : 6
+  }
 }, {
-  "results" : [ {
-    "country" : [ "country", "country" ],
-    "name" : "name",
-    "description" : "description",
-    "language" : [ "language", "language" ],
-    "id" : "id",
-    "category" : [ "category", "category" ],
-    "url" : "url"
+  "data" : [ {
+    "domain" : "domain",
+    "language" : "language",
+    "source_id" : "source_id",
+    "categories" : [ "categories", "categories" ],
+    "locale" : "locale"
   }, {
-    "country" : [ "country", "country" ],
-    "name" : "name",
-    "description" : "description",
-    "language" : [ "language", "language" ],
-    "id" : "id",
-    "category" : [ "category", "category" ],
-    "url" : "url"
+    "domain" : "domain",
+    "language" : "language",
+    "source_id" : "source_id",
+    "categories" : [ "categories", "categories" ],
+    "locale" : "locale"
   } ],
-  "status" : "status"
+  "meta" : {
+    "found" : 0,
+    "limit" : 1,
+    "page" : 5,
+    "returned" : 6
+  }
 } ]}]
-     - parameter apikey: (query)  (optional, default to pub_6104174df9dc7974a0cc89668d388e41d47c)
+     - parameter page: (query)  
+     - parameter limit: (query)  
+     - parameter apiToken: (query)  (optional, default to wVTpnmkmnAQudIaFoRgqZhyNcCMlbsA6Fd8fDR6i)
 
-     - returns: RequestBuilder<[NewsDataSources]> 
+     - returns: RequestBuilder<TheNewsApiSources>
      */
-    open class func newsDataSourcesWithRequestBuilder(apikey: String? = "pub_6104174df9dc7974a0cc89668d388e41d47c") -> RequestBuilder<NewsDataSources> {
-        let path = "/newsdata.io/api/1/sources"
+    open class func theNewsApiResultsWithRequestBuilder(page: Int,
+                                                        limit: Int?,
+                                                        domains: String,
+                                                        apiToken: String? = nil) -> RequestBuilder<TheNewsApiResults> {
+        let path = "/api.thenewsapi.com/v1/news/all"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "apikey": apikey
+                        "api_token": apiToken,
+                        "domains": domains,
+                        "page": page.encodeToJSON(), 
+                        "limit": limit?.encodeToJSON()
         ])
 
-        let requestBuilder: RequestBuilder<NewsDataSources>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        let requestBuilder: RequestBuilder<TheNewsApiResults>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+    /**
+     Get the newsApi sources list
+
+     - parameter apiToken: (query)  (optional, default to wVTpnmkmnAQudIaFoRgqZhyNcCMlbsA6Fd8fDR6i)
+     - parameter completion: completion handler to receive the data and the error objects
+     */
+    open class func theNewsApiSources(apiToken: String? = "wVTpnmkmnAQudIaFoRgqZhyNcCMlbsA6Fd8fDR6i",
+                                      completion: @escaping ((_ data: TheNewsApiSources?,
+                                                              _ error: Error?) -> Void)) {
+        theNewsApiSourcesWithRequestBuilder(apiToken: apiToken).execute { (response, error) -> Void in
+            completion(response?.body, error)
+        }
+    }
+
+
+    /**
+     Get the newsApi sources list
+     - GET /api.thenewsapi.com/v1/news/sources
+     - 
+
+     - examples: [{contentType=application/json, example=[ {
+  "data" : [ {
+    "domain" : "domain",
+    "language" : "language",
+    "source_id" : "source_id",
+    "categories" : [ "categories", "categories" ],
+    "locale" : "locale"
+  }, {
+    "domain" : "domain",
+    "language" : "language",
+    "source_id" : "source_id",
+    "categories" : [ "categories", "categories" ],
+    "locale" : "locale"
+  } ],
+  "meta" : {
+    "found" : 0,
+    "limit" : 1,
+    "page" : 5,
+    "returned" : 6
+  }
+}, {
+  "data" : [ {
+    "domain" : "domain",
+    "language" : "language",
+    "source_id" : "source_id",
+    "categories" : [ "categories", "categories" ],
+    "locale" : "locale"
+  }, {
+    "domain" : "domain",
+    "language" : "language",
+    "source_id" : "source_id",
+    "categories" : [ "categories", "categories" ],
+    "locale" : "locale"
+  } ],
+  "meta" : {
+    "found" : 0,
+    "limit" : 1,
+    "page" : 5,
+    "returned" : 6
+  }
+} ]}]
+     - parameter apiToken: (query)  (optional, default to wVTpnmkmnAQudIaFoRgqZhyNcCMlbsA6Fd8fDR6i)
+
+     - returns: RequestBuilder<TheNewsApiSources>
+     */
+    open class func theNewsApiSourcesWithRequestBuilder(apiToken: String? = nil) -> RequestBuilder<TheNewsApiSources> {
+        let path = "/api.thenewsapi.com/v1/news/sources"
+        let URLString = SwaggerClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+                        "api_token": apiToken
+        ])
+
+
+        let requestBuilder: RequestBuilder<TheNewsApiSources>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
