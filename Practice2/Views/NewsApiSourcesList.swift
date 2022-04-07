@@ -13,12 +13,21 @@ struct NewsApiSourcesList: View {
 
     var body: some View {
 
-        NavigationContainerView {
+            NavigationContainerView {
+                VStack {
 
-            List {
-                ForEach(viewModel.list) { source in
-                    NewsApiSourceCell(name: source.name ?? "",
-                                      sourceId: source._id ?? "")
+                    NavigationBarWithBackButton(title: "News sources",
+                                                useBackButton: false)
+
+                    List {
+
+                            ForEach(viewModel.list) { source in
+                                LazyView(NewsApiSourceCell(name: source.name ?? "",
+                                                  sourceId: source._id ?? ""))
+                            }
+
+                    }
+                    Spacer()
                 }
             }
             .showActivityIdicator(viewModel.list.count == 0,
@@ -27,11 +36,9 @@ struct NewsApiSourcesList: View {
             .onAppear {
                 viewModel.fetchData()
             }
-            .navigationBarTitle(Text("News sources"))
-
-        }
 
     }
+
 }
 
 struct NewsApiList_Previews: PreviewProvider {

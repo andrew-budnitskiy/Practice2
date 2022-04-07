@@ -10,15 +10,18 @@ import SwiftUI
 
 class NewsApiResultsViewModel : ObservableObject {
 
-    @Published var list: [NewsApiResult] = []
+    var list: [NewsApiResult] = []
+    @Published var canLoad: Bool = true
 
-    var canLoad: Bool = true
-    var source: String
+    var sourceId: String
+    var sourceName: String
     private var page: Int = 1
     private var totalCount: Int = .max
 
-    init(withSource source: String) {
-        self.source = source
+    init(withSource source: String,
+         withSourceName sourceName: String) {
+        self.sourceId = source
+        self.sourceName = sourceName
     }
 
     func fetchData() {
@@ -30,18 +33,22 @@ class NewsApiResultsViewModel : ObservableObject {
         }
 
         canLoad = false
-        DefaultAPI.newsApiResults(sources: source,
-                                  page: page) { [weak self] data, error in
+//        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(3)) { [self] in
 
-            if error == nil {
-                self?.totalCount = data?.totalResults ?? .max
-                self?.list.append(contentsOf: (data?.articles ?? []))
-                self?.page += 1
-            } else {
-                print("Error \(String(describing: error))")
+            DefaultAPI.newsApiResults(sources: self.sourceId,
+                                      page: self.page) { [weak self] data, error in
+
+                if error == nil {
+                    self?.totalCount = data?.totalResults ?? .max
+                    self?.list.append(contentsOf: (data?.articles ?? []))
+                    self?.page += 1
+                } else {
+                    print("Error \(String(describing: error))")
+                }
+                self?.canLoad = true
             }
-            self?.canLoad = true
-        }
+
+//        }
 
     }
 }

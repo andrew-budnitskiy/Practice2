@@ -9,7 +9,7 @@ import Foundation
 
 
 
-public struct NewsApiResult: Codable, Identifiable {
+public struct NewsApiResult: Codable, Hashable, Identifiable {
 
     public var id = UUID()
 

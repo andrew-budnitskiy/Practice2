@@ -9,7 +9,7 @@ import Foundation
 
 
 
-public struct NewsApiResultSource: Codable {
+public struct NewsApiResultSource: Codable, Hashable {
 
     public var _id: String?
     public var name: String?

@@ -10,39 +10,50 @@ import Foundation
 import SwiftUI
 
 struct NewsApiResultCell: View {
-    let title: String
-    let source: String
-    let publishingDate: String
+    static func == (lhs: NewsApiResultCell, rhs: NewsApiResultCell) -> Bool {
+        return lhs.data.id == rhs.data.id
+    }
+
+
+    let data: NewsApiResult
+    @EnvironmentObject private var router: NavigationContainerViewModel
 
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .lineLimit(3)
-                    .padding(5)
-                    .truncationMode(.tail)
-                Text(source)
-                    .font(.subheadline)
-                    .lineLimit(nil)
-                    .padding(5)
-                Text(publishingDate)
-                    .font(.footnote)
-                    .padding(5)
-            }
 
-            Spacer()
-            Image(systemName: "chevron.right")
-                    .foregroundColor(.gray)
-            }
-    }
-}
+        Button  {
 
-struct NewsApiResultCell_Preview: PreviewProvider {
-    static var previews: some View {
-        NewsApiResultCell(title: "edfwefwe w RBVWERV2WD W",
-                          source: "ABC News",
-                          publishingDate: "27.02.2022 13:54")
-    }
+            let detailInfo = NewDetailInfo(title: data.title.or("-"),
+                                           source: (data.source?.name).or(""),
+                                           author: data.author.or(""),
+                                           date: (data.publishedAt?.toString()).or(""),
+                                           info: data._description.or(""))
+            self.router.push(screenView: LazyView(detailInfo).toAnyView())
+
+        } label: {
+
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(data.title.or(""))
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .lineLimit(3)
+                        .padding(5)
+                        .truncationMode(.tail)
+                    Text((data.source?.name).or(""))
+                        .font(.subheadline)
+                        .lineLimit(nil)
+                        .padding(5)
+                    Text((data.publishedAt?.toString(withFormat: "dd.MM.yyyy HH:mm")).or(""))
+                        .font(.footnote)
+                        .padding(5)
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                        .foregroundColor(.gray)
+                }
+            }
+        }
+
 }

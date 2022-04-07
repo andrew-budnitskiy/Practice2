@@ -23,7 +23,7 @@ struct LoadingIndicatorModifier: ViewModifier {
             if !onTop {
                 content
             }
-            Divider()
+            
             HStack {
                 Spacer()
                 ProgressView()

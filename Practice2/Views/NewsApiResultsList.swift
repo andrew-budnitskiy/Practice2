@@ -13,32 +13,43 @@ struct NewsApiResultsList: View {
     @ObservedObject var viewModel: NewsApiResultsViewModel
 
     var body: some View {
-        List {
-            ForEach(viewModel.list) { item in
-                let isLastCharacter = viewModel.list.isLastItem(item)
-                NewsApiResultCell(title: item.title.or("-"),
-                                  source: (item.source?.name).or("-"),
-                                  publishingDate: (item.publishedAt?.toString(withFormat: "dd.MM.yyyy HH:mm")).or("-"))
-                                .onAppear {
-                                    let isLastCharacter = viewModel.list.isLastItem(item)
-                                    if isLastCharacter && viewModel.canLoad {
-                                        viewModel.fetchData()
-                                    }
-                                }
-                                .showActivityIdicator(//viewModel.canLoad == false &&
-                                                      (isLastCharacter || viewModel.list.isEmpty),
-                                                      onTop: false)
 
-            }
+        VStack {
+            NavigationBarWithBackButton(title: viewModel.sourceName)
+                List {
 
+                    ForEach(viewModel.list, id: \.self) { item in
+
+                        LazyView(NewsApiResultCell(data: item)
+                                        .onAppear {
+                                            let isLastCharacter = viewModel.list.isLastItem(item)
+                                            if isLastCharacter && viewModel.canLoad {
+                                                viewModel.fetchData()
+                                            }
+                                        }
+                                        .listSectionSeparator(.hidden)
+
+                                 )
+                    }
+
+                }
+                .showActivityIdicator(viewModel.canLoad == false,
+                                      onTop: viewModel.list.isEmpty)
+
+                .listStyle(.plain)
+                .onAppear {
+                    viewModel.fetchData()
+                }
+            Spacer()
         }
-        .listStyle(.plain)
-        .onAppear {
-            viewModel.fetchData()
-        }
-//        .showActivityIdicator(viewModel.list.count == 0,
-//                              onTop: true)
-        .navigationBarTitle(Text("News sources"))
 
     }
+}
+
+extension NewsApiResultsList {
+
+    var title: String {
+        return "News from \(viewModel.sourceName)"
+    }
+
 }

@@ -56,7 +56,6 @@ extension ContentView {
                     }
                     .pickerStyle(.segmented)
 
-            Text("Selected: \(selectedNewsSource.title)")
             switch self.selectedNewsSource {
 
             case .newsApi:

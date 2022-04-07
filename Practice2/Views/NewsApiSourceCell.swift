@@ -20,7 +20,8 @@ struct NewsApiSourceCell: View {
 
             Button("\(name)") {
 
-                let newsList = NewsApiResultsList(viewModel: NewsApiResultsViewModel(withSource: self.sourceId))
+                let newsList = NewsApiResultsList(viewModel: NewsApiResultsViewModel(withSource: self.sourceId,
+                                                                                     withSourceName: name))
                 router.push(screenView: newsList.toAnyView())
 
             }
