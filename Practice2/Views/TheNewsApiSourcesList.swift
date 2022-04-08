@@ -12,19 +12,33 @@ struct TheNewsApiSourcesList: View {
     @StateObject private var viewModel = TheNewsApiSourcesViewModel()
     
     var body: some View {
-        List {
-            ForEach(viewModel.list) { source in
-                TheNewsApiSourceCell(name: source.domain.or("-"))
+
+        //NavigationContainerView {
+
+            VStack {
+
+                NavigationBarWithBackButton(title: "News sources",
+                                            useBackButton: false)
+
+                List {
+
+                        ForEach(viewModel.list) { source in
+                            LazyView(TheNewsApiSourceCell(name: source.domain.or("-"),
+                                                          sourceId: source.domain.or("-")))
+                        }
+
+                }
+                Spacer()
             }
-        }
+        //}
         .showActivityIdicator(viewModel.list.count == 0,
                               onTop: true)
         .listStyle(.plain)
         .onAppear {
             viewModel.fetchData()
         }
-        .navigationBarTitle(Text("News sources"))
     }
+
 }
 
 struct NewsDataList_Previews: PreviewProvider {

@@ -56,13 +56,16 @@ extension ContentView {
                     }
                     .pickerStyle(.segmented)
 
-            switch self.selectedNewsSource {
+            NavigationContainerView {
 
-            case .newsApi:
-                NewsApiSourcesList()
-            case .newsData:
-                TheNewsApiSourcesList()
+                    switch self.selectedNewsSource {
 
+                    case .newsApi:
+                        NewsApiSourcesList()
+                    case .newsData:
+                        TheNewsApiSourcesList()
+
+                    }
             }
 
             Spacer()

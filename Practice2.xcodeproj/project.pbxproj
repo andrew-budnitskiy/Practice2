@@ -58,7 +58,6 @@
 		CEE61E3F27F46CF1009F111C /* Practice2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE61E3E27F46CF1009F111C /* Practice2App.swift */; };
 		CEE61E4127F46CF2009F111C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE61E4027F46CF2009F111C /* ContentView.swift */; };
 		CEE61E4327F46CF5009F111C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE61E4227F46CF5009F111C /* Assets.xcassets */; };
-		CEE61E4627F46CF5009F111C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE61E4527F46CF5009F111C /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,7 +114,6 @@
 		CEE61E3E27F46CF1009F111C /* Practice2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice2App.swift; sourceTree = "<group>"; };
 		CEE61E4027F46CF2009F111C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CEE61E4227F46CF5009F111C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CEE61E4527F46CF5009F111C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D48D78FECF3172844C2E8C9F /* Pods_Practice2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Practice2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -291,17 +289,8 @@
 				CEE61E3E27F46CF1009F111C /* Practice2App.swift */,
 				CEE61E4027F46CF2009F111C /* ContentView.swift */,
 				CEE61E4227F46CF5009F111C /* Assets.xcassets */,
-				CEE61E4427F46CF5009F111C /* Preview Content */,
 			);
 			path = Practice2;
-			sourceTree = "<group>";
-		};
-		CEE61E4427F46CF5009F111C /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				CEE61E4527F46CF5009F111C /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +353,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEE61E4627F46CF5009F111C /* Preview Assets.xcassets in Resources */,
 				CEE61E4327F46CF5009F111C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
