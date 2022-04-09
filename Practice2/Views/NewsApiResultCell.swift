@@ -17,6 +17,7 @@ struct NewsApiResultCell: View {
 
     let data: NewsApiResult
     @EnvironmentObject private var router: NavigationContainerViewModel
+    @State private var animationStarted = false
 
     var body: some View {
 
@@ -46,14 +47,29 @@ struct NewsApiResultCell: View {
                     Text((data.publishedAt?.toString(withFormat: "dd.MM.yyyy HH:mm")).or(""))
                         .font(.footnote)
                         .padding(5)
+                        .over
                 }
 
                 Spacer()
 
-                Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
+                HStack {
+                    Spacer()
+                    Button.init {
+                        withAnimation(.easeInOut(duration: 5)) {
+                            self.animationStarted = true
+                        }
+                    } label: {
+                        Image(systemName: "heart")
+                            .padding(.horizontal, 10)
+                            .offset(x: animationStarted ? 30 : 0,
+                                    y: animationStarted ? -200 : 0)
+                    }
+
+                    Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
                 }
             }
         }
+    }
 
 }

@@ -26,7 +26,7 @@ extension NewsItem {
 
 }
 
-final class ContentView: View {
+struct ContentView: View {
 
     @State var selectedNewsSource = NewsItem.newsApi
 
@@ -35,13 +35,13 @@ final class ContentView: View {
             .padding()
     }
 
-    private lazy var newsApiSourcesList: NewsApiSourcesList = {
-        return NewsApiSourcesList()
-    }()
+    private var newsApiSourcesList: NewsApiSourcesList
+    private var theNewsApiSourcesList: TheNewsApiSourcesList
 
-    private lazy var theNewsApiSourcesList: TheNewsApiSourcesList = {
-        return TheNewsApiSourcesList()
-    }()
+    init() {
+        self.newsApiSourcesList = NewsApiSourcesList(viewModel: NewsApiSourcesViewModel())
+        self.theNewsApiSourcesList = TheNewsApiSourcesList(viewModel: TheNewsApiSourcesViewModel())
+    }
 
 }
 

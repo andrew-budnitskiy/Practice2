@@ -24,8 +24,9 @@ class NewsApiSourcesViewModel : ObservableObject {
                 self?.list.append(contentsOf: (data?.sources ?? []))
             } else {
                 print("Error \(String(describing: error))")
+                self?.canLoad = true
             }
-            self?.canLoad = true
+
         }
 
     }

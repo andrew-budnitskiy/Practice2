@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 
 struct TheNewsApiSourcesList: View {
-    @StateObject private var viewModel = TheNewsApiSourcesViewModel()
+
+    var viewModel: TheNewsApiSourcesViewModel
     
     var body: some View {
 
@@ -40,10 +41,3 @@ struct TheNewsApiSourcesList: View {
     }
 
 }
-
-struct NewsDataList_Previews: PreviewProvider {
-    static var previews: some View {
-        TheNewsApiSourcesList()
-    }
-}
-
