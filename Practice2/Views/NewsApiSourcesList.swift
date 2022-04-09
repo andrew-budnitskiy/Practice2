@@ -13,7 +13,7 @@ struct NewsApiSourcesList: View {
 
     var body: some View {
 
-            //NavigationContainerView {
+            NavigationContainerView {
                 VStack {
 
                     NavigationBarWithBackButton(title: "News sources",
@@ -29,7 +29,7 @@ struct NewsApiSourcesList: View {
                     }
                     Spacer()
                 }
-            //}
+            }
             .showActivityIdicator(viewModel.list.count == 0,
                                   onTop: true)
             .listStyle(.plain)

@@ -38,7 +38,9 @@ struct NewsApiResultsList: View {
 
                 .listStyle(.plain)
                 .onAppear {
-                    viewModel.fetchData()
+                    if viewModel.list.isEmpty {
+                        viewModel.fetchData()
+                    }
                 }
             Spacer()
         }
