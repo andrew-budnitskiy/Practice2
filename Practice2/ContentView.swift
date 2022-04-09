@@ -26,17 +26,22 @@ extension NewsItem {
 
 }
 
-struct ContentView: View {
+final class ContentView: View {
 
     @State var selectedNewsSource = NewsItem.newsApi
 
     var body: some View {
-        self.segmentedControl()
+            self.segmentedControl()
             .padding()
     }
 
+    private lazy var newsApiSourcesList: NewsApiSourcesList = {
+        return NewsApiSourcesList()
+    }()
 
-
+    private lazy var theNewsApiSourcesList: TheNewsApiSourcesList = {
+        return TheNewsApiSourcesList()
+    }()
 
 }
 
@@ -47,43 +52,26 @@ extension ContentView {
         let items: [NewsItem] = [.newsApi, .newsData]
 
         return VStack {
-                    Picker("Select a news source?", selection: $selectedNewsSource) {
 
-                        ForEach(items, id: \.self ) {
-                            Text($0.title)
-                                .tag($0.rawValue)
-                        }
-                    }
-                    .pickerStyle(.segmented)
+            Picker("Select a news source?", selection: $selectedNewsSource) {
 
-            NavigationContainerView {
-
-                    switch self.selectedNewsSource {
-
-                    case .newsApi:
-                        NewsApiSourcesList()
-                    case .newsData:
-                        TheNewsApiSourcesList()
-
-                    }
+                ForEach(items, id: \.self ) {
+                    Text($0.title)
+                        .tag($0.rawValue)
+                }
             }
+            .pickerStyle(.segmented)
 
+            switch self.selectedNewsSource {
+            case .newsApi:
+                self.newsApiSourcesList
+            case .newsData:
+                self.theNewsApiSourcesList
+            }
             Spacer()
-            }
+        }
 
     }
-
-//    private func newsList() -> View {
-//        switch self.selectedNewsSource {
-//
-//        case .newsApi:
-//            return NewsApiList()
-//        case .newsData:
-//            return NewsDataList()
-//
-//        }
-//
-//    }
 
 }
 
