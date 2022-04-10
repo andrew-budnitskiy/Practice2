@@ -25,8 +25,8 @@ struct NewsApiSourcesList: View {
 
                         ForEach(viewModel.list) { source in
 
-                            let resultsList = LazyView(NewsResultsList(viewModel:
-                                                    NewsApiResultsViewModel(withSource: source.identifier,                                         withSourceName: source.title)))
+                            let resultsList = NewsResultsList(viewModel:
+                                                    NewsApiResultsViewModel(withSource: source.identifier,                                         withSourceName: source.title))
 
                             LazyView(NewsSourceCell(data: source,
                                                        resultsList: resultsList))

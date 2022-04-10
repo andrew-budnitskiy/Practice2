@@ -14,7 +14,7 @@ import SwiftUI
 struct NewsSourceCell<NewsSourceType: NewsSource, ResultsListType: View>: View {
 
     let data: NewsSourceType
-    let resultsList: LazyView<ResultsListType>
+    let resultsList: ResultsListType
     @EnvironmentObject private var router: NavigationContainerViewModel
 
     var body: some View {

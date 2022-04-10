@@ -76,6 +76,12 @@ extension TheNewsApiResult: News {
     }
 
     var publishingDate: String {
-        return self.publishedAt.or("-")
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.ssssssZ"
+
+        let dateValue = dateFormatter.date(from: self.publishedAt.or(""))
+        return dateValue?.toString(withFormat: "dd.MM.yyyy HH:mm") ?? self.publishedAt ?? "-"
     }
 }
