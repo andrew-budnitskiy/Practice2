@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+//Список новостей NewsApi.org. С пейджингом.
 struct NewsApiSourcesList: View {
 
     @ObservedObject var viewModel: NewsApiSourcesViewModel
@@ -22,8 +23,13 @@ struct NewsApiSourcesList: View {
 
                     List {
 
-                            ForEach(viewModel.list) { source in
-                                LazyView(NewsApiSourceCell(data: source))
+                        ForEach(viewModel.list) { source in
+
+                            let resultsList = LazyView(NewsResultsList(viewModel:
+                                                    NewsApiResultsViewModel(withSource: source.identifier,                                         withSourceName: source.title)))
+
+                            LazyView(NewsSourceCell(data: source,
+                                                       resultsList: resultsList))
                             }
 
                     }

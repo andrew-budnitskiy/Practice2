@@ -7,24 +7,12 @@
 
 import SwiftUI
 
-
-enum NewsItem: Int, Hashable {
-    case newsApi
-    case newsData
-}
-
-extension NewsItem {
-
-    var title: String {
-        switch self {
-        case .newsApi:
-            return "NewsApi"
-        case .newsData:
-            return "NewsData"
-        }
-    }
-
-}
+//Главный view интерфейса
+//Реализует подгрузку данных из двух источников новостей - newsapi.org и thenewsapi.com
+//Первый уровень - список источников новостей. Без пейджинга.
+//Из источника новостей мы проваливаемся в список новостей. С пейджингом.
+//Из списка новостей проваливаемся в детализацию новости.
+//Итого - три уровня вложенности на custom navigation stack.
 
 struct ContentView: View {
 

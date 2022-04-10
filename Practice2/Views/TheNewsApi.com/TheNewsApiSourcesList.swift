@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
+//Список новостей TheNewsApi.com. С пейджингом
 struct TheNewsApiSourcesList: View {
 
-    var viewModel: TheNewsApiSourcesViewModel
+    @ObservedObject var viewModel: TheNewsApiSourcesViewModel
     
     var body: some View {
 
@@ -24,7 +25,11 @@ struct TheNewsApiSourcesList: View {
                 List {
 
                         ForEach(viewModel.list) { source in
-                            LazyView(TheNewsApiSourceCell(data: source))
+
+                            let resultsList = LazyView(NewsResultsList(viewModel:
+                                                    TheNewsApiResultsViewModel(withSource: source.identifier,                                         withSourceName: source.title)))
+                            LazyView(NewsSourceCell(data: source,
+                                                    resultsList: resultsList))
                         }
 
                 }

@@ -6,23 +6,22 @@
 //
 
 import Foundation
-
 import SwiftUI
 
-struct NewsApiSourceCell<NewsSourceType: NewsSource>: View {
+// Ячейка списка источников новостей.
+// Параметризована типом данных NewSourceType
+// и view списка новостей ResultsListType, который будет открыт при нажатии на нее
+struct NewsSourceCell<NewsSourceType: NewsSource, ResultsListType: View>: View {
 
     let data: NewsSourceType
+    let resultsList: LazyView<ResultsListType>
     @EnvironmentObject private var router: NavigationContainerViewModel
 
     var body: some View {
         HStack {
 
             Button("\(self.data.title)") {
-
-                let newsList = NewsResultsList(viewModel: NewsApiResultsViewModel(withSource: self.data.identifier,
-                                                                                     withSourceName: self.data.title))
-                router.push(screenView: newsList.toAnyView())
-
+                router.push(screenView: resultsList.toAnyView())
             }
             Spacer()
             Image(systemName: "chevron.right")

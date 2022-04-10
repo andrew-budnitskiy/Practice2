@@ -1,5 +1,5 @@
 //
-//  TheNewsApiResultsViewModel.swift
+//  NewsApiResultsViewModel.swift
 //  Practice2
 //
 //  Created by Andrey Budnitskiy on 03.04.2022.
@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUI
 
-class TheNewsApiResultsViewModel : NewsListViewModel {
+//ViewModel для запроса списка новостей на NewsApi.org
+//С пейджингом
+class NewsApiResultsViewModel : NewsListViewModel {
 
-    var list: [TheNewsApiResult] = []
+    var list: [NewsApiResult] = []
     @Published var canLoad: Bool = true
 
     var sourceId: String
@@ -33,18 +35,22 @@ class TheNewsApiResultsViewModel : NewsListViewModel {
         }
 
         canLoad = false
+//        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: .now() + .seconds(3)) { [self] in
 
-            DefaultAPI.theNewsApiResults(page: self.page, domains: self.sourceId) { [weak self] data, error in
+            DefaultAPI.newsApiResults(sources: self.sourceId,
+                                      page: self.page) { [weak self] data, error in
 
                 if error == nil {
-                    self?.totalCount = data?.meta?.found ?? .max
-                    self?.list.append(contentsOf: (data?.data ?? []))
+                    self?.totalCount = data?.totalResults ?? .max
+                    self?.list.append(contentsOf: (data?.articles ?? []))
                     self?.page += 1
                 } else {
                     print("Error \(String(describing: error))")
                 }
                 self?.canLoad = true
             }
+
+//        }
 
     }
 }

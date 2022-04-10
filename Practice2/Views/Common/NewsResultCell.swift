@@ -6,9 +6,11 @@
 //
 
 import Foundation
-
 import SwiftUI
 
+// Ячейка новости.
+// Параметризована типом данных новости
+// Типы данных новости реализуют протокол, представляющий интерфейс, обрабатываемый этой ячейкой
 struct NewsResultCell<NewsType: News>: View {
 
     let data: NewsType
@@ -47,22 +49,25 @@ struct NewsResultCell<NewsType: News>: View {
 
                 Spacer()
 
-                HStack {
-                    Spacer()
-                    Button.init {
-                        withAnimation(.easeInOut(duration: 5)) {
-                            self.animationStarted = true
-                        }
-                    } label: {
-                        Image(systemName: "heart")
-                            .padding(.horizontal, 10)
-                            .offset(x: animationStarted ? 30 : 0,
-                                    y: animationStarted ? -200 : 0)
-                    }
+                Image(systemName: "chevron.right")
+                        .foregroundColor(.gray)
 
-                    Image(systemName: "chevron.right")
-                            .foregroundColor(.gray)
-                }
+//                HStack {
+//                    Spacer()
+//                    Button.init {
+//                        withAnimation(.easeInOut(duration: 5)) {
+//                            self.animationStarted = true
+//                        }
+//                    } label: {
+//                        Image(systemName: "heart")
+//                            .padding(.horizontal, 10)
+//                            .offset(x: animationStarted ? 30 : 0,
+//                                    y: animationStarted ? -200 : 0)
+//                    }
+//
+//                    Image(systemName: "chevron.right")
+//                            .foregroundColor(.gray)
+//                }
             }
         }
     }
