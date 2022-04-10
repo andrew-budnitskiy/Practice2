@@ -42,3 +42,18 @@ public struct NewsApiSource: Codable, Identifiable {
     }
 
 }
+
+extension NewsApiSource: NewsSource {
+
+    var title: String {
+        return self.name.or("the news source title is empty")
+    }
+
+    var identifier: String {
+        return self._id.or("-")
+    }
+
+
+
+
+}

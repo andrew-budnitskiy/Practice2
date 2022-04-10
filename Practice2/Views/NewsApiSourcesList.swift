@@ -10,7 +10,7 @@ import SwiftUI
 
 struct NewsApiSourcesList: View {
 
-    @ObservedObject var viewModel:  NewsApiSourcesViewModel
+    @ObservedObject var viewModel: NewsApiSourcesViewModel
 
     var body: some View {
 
@@ -23,8 +23,7 @@ struct NewsApiSourcesList: View {
                     List {
 
                             ForEach(viewModel.list) { source in
-                                LazyView(NewsApiSourceCell(name: source.name ?? "",
-                                                  sourceId: source._id ?? ""))
+                                LazyView(NewsApiSourceCell(data: source))
                             }
 
                     }

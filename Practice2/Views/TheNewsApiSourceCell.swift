@@ -9,19 +9,19 @@ import Foundation
 
 import SwiftUI
 
-struct TheNewsApiSourceCell: View {
+struct TheNewsApiSourceCell<NewsSourceType: NewsSource>: View {
 
-    let name: String
-    let sourceId: String
+    let data: NewsSourceType
+    let resultsList: 
     @EnvironmentObject private var router: NavigationContainerViewModel
 
     var body: some View {
         HStack {
 
-            Button("\(name)") {
+            Button("\(self.data.title)") {
 
-                let newsList = TheNewsApiResultsList(viewModel: TheNewsApiResultsViewModel(withSource: self.sourceId,
-                                                                                           withSourceName: name))
+                let newsList = NewsResultsList(viewModel: TheNewsApiResultsViewModel(withSource: self.data.identifier,
+                                                                                     withSourceName: self.data.title))
                 router.push(screenView: newsList.toAnyView())
 
             }

@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct TheNewsApiResultsList: View {
+struct NewsResultsList<ViewModelType: NewsListViewModel>: View {
 
-    @ObservedObject var viewModel: TheNewsApiResultsViewModel
+    @ObservedObject var viewModel: ViewModelType
 
     var body: some View {
 
@@ -20,7 +20,7 @@ struct TheNewsApiResultsList: View {
 
                     ForEach(viewModel.list, id: \.self) { item in
 
-                        LazyView(TheNewsApiResultCell(data: item)
+                        LazyView(NewsResultCell(data: item)
                                         .onAppear {
                                             let isLastCharacter = viewModel.list.isLastItem(item)
                                             if isLastCharacter && viewModel.canLoad {
@@ -38,7 +38,9 @@ struct TheNewsApiResultsList: View {
 
                 .listStyle(.plain)
                 .onAppear {
-                    viewModel.fetchData()
+                    if viewModel.list.isEmpty {
+                        viewModel.fetchData()
+                    }
                 }
             Spacer()
         }
@@ -46,7 +48,7 @@ struct TheNewsApiResultsList: View {
     }
 }
 
-extension NewsApiResultsList {
+extension NewsResultsList {
 
     var title: String {
         return "News from \(viewModel.sourceName)"

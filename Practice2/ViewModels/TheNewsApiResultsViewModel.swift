@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class TheNewsApiResultsViewModel : ObservableObject {
+class TheNewsApiResultsViewModel : NewsListViewModel {
 
     var list: [TheNewsApiResult] = []
     @Published var canLoad: Bool = true

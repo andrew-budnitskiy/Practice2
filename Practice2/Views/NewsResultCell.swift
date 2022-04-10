@@ -9,13 +9,9 @@ import Foundation
 
 import SwiftUI
 
-struct NewsApiResultCell: View {
-    static func == (lhs: NewsApiResultCell, rhs: NewsApiResultCell) -> Bool {
-        return lhs.data.id == rhs.data.id
-    }
+struct NewsResultCell<NewsType: News>: View {
 
-
-    let data: NewsApiResult
+    let data: NewsType
     @EnvironmentObject private var router: NavigationContainerViewModel
     @State private var animationStarted = false
 
@@ -23,31 +19,30 @@ struct NewsApiResultCell: View {
 
         Button  {
 
-            let detailInfo = NewDetailInfo(title: data.title.or("-"),
-                                           source: (data.source?.name).or(""),
-                                           author: data.author.or(""),
-                                           date: (data.publishedAt?.toString()).or(""),
-                                           info: data._description.or(""))
+            let detailInfo = NewDetailInfo(title: data.header,
+                                           source: data.origin,
+                                           author: data.writer,
+                                           date: data.publishingDate,
+                                           info: data.description)
             self.router.push(screenView: LazyView(detailInfo).toAnyView())
 
         } label: {
 
             HStack {
                 VStack(alignment: .leading) {
-                    Text(data.title.or(""))
+                    Text(data.header)
                         .font(.headline)
                         .fontWeight(.semibold)
                         .lineLimit(3)
                         .padding(5)
                         .truncationMode(.tail)
-                    Text((data.source?.name).or(""))
+                    Text(data.origin)
                         .font(.subheadline)
                         .lineLimit(nil)
                         .padding(5)
-                    Text((data.publishedAt?.toString(withFormat: "dd.MM.yyyy HH:mm")).or(""))
+                    Text(data.publishingDate)
                         .font(.footnote)
                         .padding(5)
-                        .over
                 }
 
                 Spacer()

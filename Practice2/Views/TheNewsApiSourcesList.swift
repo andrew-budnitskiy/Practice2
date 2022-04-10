@@ -24,8 +24,7 @@ struct TheNewsApiSourcesList: View {
                 List {
 
                         ForEach(viewModel.list) { source in
-                            LazyView(TheNewsApiSourceCell(name: source.domain.or("-"),
-                                                          sourceId: source.domain.or("-")))
+                            LazyView(TheNewsApiSourceCell(data: source))
                         }
 
                 }

@@ -45,3 +45,25 @@ public struct NewsApiResult: Codable, Identifiable, Hashable {
     }
 
 }
+
+extension NewsApiResult: News {
+    var header: String {
+        return self.title.or("the news header is empty")
+    }
+
+    var writer: String {
+        return self.author.or("-")
+    }
+
+    var description: String {
+        return self._description.or("the news body is empty")
+    }
+
+    var origin: String {
+        return (self.source?.name).or("-")
+    }
+
+    var publishingDate: String {
+        return (self.publishedAt?.toString(withFormat: "dd.MM.yyyy HH:mm")).or("-")
+    }
+}
