@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUI
 
+//ViewModel для запроса списка источников новостей на NewsApi.org
+//Без пейджинга
 class NewsApiSourcesViewModel : ObservableObject {
-    @Published var list: [NewsApiSource] = []
-    var canLoad: Bool = true
+    var list: [NewsApiSource] = []
+    @Published var canLoad: Bool = true
 
     func fetchData() {
         guard canLoad == true else {
@@ -24,8 +26,10 @@ class NewsApiSourcesViewModel : ObservableObject {
                 self?.list.append(contentsOf: (data?.sources ?? []))
             } else {
                 print("Error \(String(describing: error))")
+
             }
             self?.canLoad = true
+
         }
 
     }

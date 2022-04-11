@@ -7,36 +7,30 @@
 
 import SwiftUI
 
-
-enum NewsItem: Int, Hashable {
-    case newsApi
-    case newsData
-}
-
-extension NewsItem {
-
-    var title: String {
-        switch self {
-        case .newsApi:
-            return "NewsApi"
-        case .newsData:
-            return "NewsData"
-        }
-    }
-
-}
+//Главный view интерфейса
+//Реализует подгрузку данных из двух источников новостей - newsapi.org и thenewsapi.com
+//Первый уровень - список источников новостей. Без пейджинга.
+//Из источника новостей мы проваливаемся в список новостей. С пейджингом.
+//Из списка новостей проваливаемся в детализацию новости.
+//Итого - три уровня вложенности на custom navigation stack.
+//Модели данных, слой запросов - сгенерированы при помощи Swagger
 
 struct ContentView: View {
 
     @State var selectedNewsSource = NewsItem.newsApi
 
     var body: some View {
-        self.segmentedControl()
+            self.segmentedControl()
             .padding()
     }
 
+    private var newsApiSourcesList: NewsApiSourcesList
+    private var theNewsApiSourcesList: TheNewsApiSourcesList
 
-
+    init() {
+        self.newsApiSourcesList = NewsApiSourcesList(viewModel: NewsApiSourcesViewModel())
+        self.theNewsApiSourcesList = TheNewsApiSourcesList(viewModel: TheNewsApiSourcesViewModel())
+    }
 
 }
 
@@ -47,40 +41,26 @@ extension ContentView {
         let items: [NewsItem] = [.newsApi, .newsData]
 
         return VStack {
-                    Picker("Select a news source?", selection: $selectedNewsSource) {
 
-                        ForEach(items, id: \.self ) {
-                            Text($0.title)
-                                .tag($0.rawValue)
-                        }
-                    }
-                    .pickerStyle(.segmented)
+            Picker("Select a news source?", selection: $selectedNewsSource) {
+
+                ForEach(items, id: \.self ) {
+                    Text($0.title)
+                        .tag($0.rawValue)
+                }
+            }
+            .pickerStyle(.segmented)
 
             switch self.selectedNewsSource {
-
             case .newsApi:
-                NewsApiSourcesList()
+                self.newsApiSourcesList
             case .newsData:
-                NewsDataSourcesList()
-
+                self.theNewsApiSourcesList
             }
-
             Spacer()
-            }
+        }
 
     }
-
-//    private func newsList() -> View {
-//        switch self.selectedNewsSource {
-//
-//        case .newsApi:
-//            return NewsApiList()
-//        case .newsData:
-//            return NewsDataList()
-//
-//        }
-//
-//    }
 
 }
 
