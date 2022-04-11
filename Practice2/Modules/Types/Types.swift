@@ -19,7 +19,7 @@ extension NewsItem {
         case .newsApi:
             return "NewsApi"
         case .newsData:
-            return "NewsData"
+            return "TheNewsApi"
         }
     }
 
