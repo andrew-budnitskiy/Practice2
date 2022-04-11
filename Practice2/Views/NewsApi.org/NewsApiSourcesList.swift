@@ -23,7 +23,7 @@ struct NewsApiSourcesList: View {
 
                     List {
 
-                        ForEach(viewModel.list) { source in
+                        ForEach(viewModel.list, id: \.id) { source in
 
                             let resultsList = NewsResultsList(viewModel:
                                                     NewsApiResultsViewModel(withSource: source.identifier,                                         withSourceName: source.title))
@@ -36,7 +36,8 @@ struct NewsApiSourcesList: View {
                     Spacer()
                 }
             }
-            .showActivityIdicator(viewModel.list.count == 0,
+            .showActivityIdicator(!viewModel.canLoad &&
+                                  viewModel.list.isEmpty,
                                   onTop: true)
             .listStyle(.plain)
             .onAppear {

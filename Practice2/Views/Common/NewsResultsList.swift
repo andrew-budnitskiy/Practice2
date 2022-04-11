@@ -18,32 +18,39 @@ struct NewsResultsList<ViewModelType: NewsListViewModel>: View {
 
         VStack {
             NavigationBarWithBackButton(title: viewModel.sourceName)
-                List {
+                List() {
 
-                    ForEach(viewModel.list, id: \.self) { item in
+                    ForEach(viewModel.list, id: \.id) { item in
 
-                        LazyView(NewsResultCell(data: item)
+                        let isLastCharacter = viewModel.list.isLastItem(item)
+                        NewsResultCell(data: item)
                                         .onAppear {
-                                            let isLastCharacter = viewModel.list.isLastItem(item)
+
                                             if isLastCharacter && viewModel.canLoad {
                                                 viewModel.fetchData()
                                             }
                                         }
                                         .listSectionSeparator(.hidden)
-
-                                 )
+                        if isLastCharacter {
+                            HStack {
+                                Spacer()
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                Spacer()
+                            }
+                            .listRowSeparator(.hidden)
+                        }
                     }
 
                 }
-                .showActivityIdicator(viewModel.canLoad == false,
-                                      onTop: viewModel.list.isEmpty)
-
                 .listStyle(.plain)
                 .onAppear {
                     if viewModel.list.isEmpty {
                         viewModel.fetchData()
                     }
                 }
+                .showActivityIdicator(viewModel.canLoad == false && viewModel.list.isEmpty,
+                                      onTop: true)
             Spacer()
         }
 

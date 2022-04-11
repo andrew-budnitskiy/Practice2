@@ -11,8 +11,8 @@ import SwiftUI
 //ViewModel для запроса списка источников новостей на TheNewsApi.com
 //Без пейджинга
 class TheNewsApiSourcesViewModel : ObservableObject {
-    @Published var list: [TheNewsApiSource] = []
-    var canLoad: Bool = true
+    var list: [TheNewsApiSource] = []
+    @Published var canLoad: Bool = true
 
     func fetchData() {
         guard canLoad == true else {
@@ -26,9 +26,9 @@ class TheNewsApiSourcesViewModel : ObservableObject {
                 self?.list.append(contentsOf: (data?.data ?? []))
             } else {
                 print("Error \(String(describing: error))")
-                self?.canLoad = true
             }
-
+            self?.canLoad = true
+            
         }
 
     }
