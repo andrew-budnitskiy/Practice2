@@ -10,7 +10,7 @@ import SwiftUI
 
 //ViewModel для запроса списка источников новостей на NewsApi.org
 //Без пейджинга
-class NewsApiSourcesViewModel : ObservableObject {
+class NewsApiSourcesViewModel : ObservableObject, SourcesListViewModel {
     var list: [NewsApiSource] = []
     @Published var canLoad: Bool = true
 

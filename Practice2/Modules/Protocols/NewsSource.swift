@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol NewsSource {
+protocol NewsSource: Identifiable where ID == UUID {
 
     var title: String { get }
     var identifier: String { get }

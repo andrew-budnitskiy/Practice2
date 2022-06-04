@@ -22,7 +22,7 @@ struct NewsApiSourcesList: View {
                                                 useBackButton: false)
 
                     List {
-
+                        
                         ForEach(viewModel.list, id: \.id) { source in
 
                             let resultsList = NewsResultsList(viewModel:
