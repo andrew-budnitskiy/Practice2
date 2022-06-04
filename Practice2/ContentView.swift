@@ -17,19 +17,17 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State var selectedNewsSource = NewsItem.newsApi
+    private let pageCoordinator: PageCoordinatorProtocol!
+    @State var selectedNewsSource: NewsItem?
 
     var body: some View {
             self.segmentedControl()
             .padding()
     }
 
-    private var newsApiSourcesList: NewsApiSourcesList
-    private var theNewsApiSourcesList: TheNewsApiSourcesList
-
-    init() {
-        self.newsApiSourcesList = NewsApiSourcesList(viewModel: NewsApiSourcesViewModel())
-        self.theNewsApiSourcesList = TheNewsApiSourcesList(viewModel: TheNewsApiSourcesViewModel())
+    init(withPageCoordinator pageCoordinator: PageCoordinatorProtocol = DIContainer.shared.resolve(type: PageCoordinatorProtocol.self)!) {
+        self.pageCoordinator = pageCoordinator
+        self.selectedNewsSource = pageCoordinator.defaultPage
     }
 
 }
@@ -38,7 +36,7 @@ extension ContentView {
 
     private func segmentedControl() -> some View {
 
-        let items: [NewsItem] = [.newsApi, .newsData]
+        let items: [NewsItem] = self.pageCoordinator.pages
 
         return VStack {
 
@@ -51,12 +49,9 @@ extension ContentView {
             }
             .pickerStyle(.segmented)
 
-            switch self.selectedNewsSource {
-            case .newsApi:
-                self.newsApiSourcesList
-            case .newsData:
-                self.theNewsApiSourcesList
-            }
+            self
+                .pageCoordinator
+                .view(by: self.selectedNewsSource ?? self.pageCoordinator.defaultPage)
             Spacer()
         }
 

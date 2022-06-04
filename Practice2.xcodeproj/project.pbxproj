@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B804148284BB6F400502D7D /* DIContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B804147284BB6F400502D7D /* DIContainerProtocol.swift */; };
+		0B80414A284BB94300502D7D /* PageCoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B804149284BB94300502D7D /* PageCoordinatorProtocol.swift */; };
+		0B80414C284BBF1500502D7D /* PageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B80414B284BBF1500502D7D /* PageCoordinator.swift */; };
 		0B988DC227F9D8E200927DCE /* NewsApiSourcesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B988DC127F9D8E200927DCE /* NewsApiSourcesViewModel.swift */; };
 		0B988E0727F9E0C000927DCE /* NewsSourceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B988E0627F9E0C000927DCE /* NewsSourceCell.swift */; };
 		0B988E0927F9E1D200927DCE /* NewsApiSourcesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B988E0827F9E1D200927DCE /* NewsApiSourcesList.swift */; };
@@ -62,6 +65,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B804147284BB6F400502D7D /* DIContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainerProtocol.swift; sourceTree = "<group>"; };
+		0B804149284BB94300502D7D /* PageCoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCoordinatorProtocol.swift; sourceTree = "<group>"; };
+		0B80414B284BBF1500502D7D /* PageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCoordinator.swift; sourceTree = "<group>"; };
 		0B988DC127F9D8E200927DCE /* NewsApiSourcesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiSourcesViewModel.swift; sourceTree = "<group>"; };
 		0B988E0627F9E0C000927DCE /* NewsSourceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSourceCell.swift; sourceTree = "<group>"; };
 		0B988E0827F9E1D200927DCE /* NewsApiSourcesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsApiSourcesList.swift; sourceTree = "<group>"; };
@@ -206,6 +212,8 @@
 				0BEBA56A28033C8F0072F90E /* News.swift */,
 				0BEBA56C280345FA0072F90E /* NewsSource.swift */,
 				0BEBA56E28034C6D0072F90E /* NewsListViewModel.swift */,
+				0B804147284BB6F400502D7D /* DIContainerProtocol.swift */,
+				0B804149284BB94300502D7D /* PageCoordinatorProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -235,6 +243,7 @@
 				CE821BB327FEBF8800E4AAF4 /* BackButton.swift */,
 				CE821BB527FEC08200E4AAF4 /* NavigationBar.swift */,
 				CE821BB727FEDC9200E4AAF4 /* NewDetailInfo.swift */,
+				0B80414B284BBF1500502D7D /* PageCoordinator.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -472,6 +481,7 @@
 				0B988E0927F9E1D200927DCE /* NewsApiSourcesList.swift in Sources */,
 				0BEBA56F28034C6D0072F90E /* NewsListViewModel.swift in Sources */,
 				CE821BD427FF24D600E4AAF4 /* NewsApiResult.swift in Sources */,
+				0B80414A284BB94300502D7D /* PageCoordinatorProtocol.swift in Sources */,
 				CEC5672927FC62A900CF3684 /* NewsResultCell.swift in Sources */,
 				0BEBA56D280345FA0072F90E /* NewsSource.swift in Sources */,
 				CE821BE327FF24D600E4AAF4 /* DefaultAPI.swift in Sources */,
@@ -492,6 +502,7 @@
 				CE821BDC27FF24D600E4AAF4 /* Models.swift in Sources */,
 				CE821BDA27FF24D600E4AAF4 /* TheNewsApiSources.swift in Sources */,
 				CEC5668127FC463C00CF3684 /* NavigationStack.swift in Sources */,
+				0B804148284BB6F400502D7D /* DIContainerProtocol.swift in Sources */,
 				CEC5668527FC463C00CF3684 /* SwiftUIView.swift in Sources */,
 				CE821BDE27FF24D600E4AAF4 /* JSONEncodableEncoding.swift in Sources */,
 				CE821BD627FF24D600E4AAF4 /* NewsApiResultSource.swift in Sources */,
@@ -513,6 +524,7 @@
 				CE821BDF27FF24D600E4AAF4 /* AlamofireImplementations.swift in Sources */,
 				CE821BD227FF24D600E4AAF4 /* TheNewsApiResults.swift in Sources */,
 				CE821BD127FF24D600E4AAF4 /* JSONValue.swift in Sources */,
+				0B80414C284BBF1500502D7D /* PageCoordinator.swift in Sources */,
 				0B988E1027F9E68F00927DCE /* LoadingIndicatorModifier.swift in Sources */,
 				CEE61E3F27F46CF1009F111C /* Practice2App.swift in Sources */,
 			);
