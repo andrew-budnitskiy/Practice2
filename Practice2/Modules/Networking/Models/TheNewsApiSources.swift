@@ -7,15 +7,13 @@
 
 import Foundation
 
-
-
 public struct TheNewsApiSources: Codable {
 
-    public var meta: TheNewsApiSourcesMeta?
+    //public var meta: TheNewsApiSourcesMeta?
     public var data: [TheNewsApiSource]?
 
     public init(meta: TheNewsApiSourcesMeta? = nil, data: [TheNewsApiSource]? = nil) {
-        self.meta = meta
+        //self.meta = meta
         self.data = data
     }
 

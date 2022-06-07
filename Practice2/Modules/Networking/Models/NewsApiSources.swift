@@ -11,11 +11,11 @@ import Foundation
 
 public struct NewsApiSources: Codable {
 
-    public var status: String?
+    //public var status: String?
     public var sources: [NewsApiSource]?
 
     public init(status: String? = nil, sources: [NewsApiSource]? = nil) {
-        self.status = status
+        //self.status = status
         self.sources = sources
     }
 
