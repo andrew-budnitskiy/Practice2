@@ -402,5 +402,42 @@ extension DefaultAPI: NewsApi {
         }
     }
 
+    static func fetchTheNewsApiResults(page: Int,
+                                       domains: String,
+                                       limit: Int = 25,
+                                       response: @escaping TheNewsApiResultsResult) {
+        DefaultAPI.theNewsApiResults(page: page,
+                                     limit: limit,
+                                     domains: domains) { data, error in
+
+            if let error = error {
+                response(.failure(error))
+            } else {
+                response(.success(data))
+            }
+
+        }
+    }
+
+    static func fetchNewsApiResults(sources: String,
+                                    page: Int,
+                                    pageSize: Int = 25,
+                                    response: @escaping NewsApiResultsResult) {
+
+        DefaultAPI.newsApiResults(sources: sources,
+                                  page: page,
+                                  pageSize: pageSize) { data, error in
+
+            if let error = error {
+                response(.failure(error))
+            } else {
+                response(.success(data))
+            }
+
+        }
+
+    }
+
+
 
 }

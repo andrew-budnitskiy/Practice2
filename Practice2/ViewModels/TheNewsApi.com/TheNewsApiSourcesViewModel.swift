@@ -12,6 +12,12 @@ import SwiftUI
 //Без пейджинга
 class TheNewsApiSourcesViewModel : ObservableObject, SourcesListViewModel {
 
+    private let newsApi: NewsApi.Type
+    init(with newsApi: NewsApi.Type = DIContainer.shared.resolve(type: NewsApi.Type.self)!) {
+        self.newsApi = newsApi
+    }
+
+
     var list: [TheNewsApiSource] = []
     @Published var canLoad: Bool = true
 
@@ -21,16 +27,28 @@ class TheNewsApiSourcesViewModel : ObservableObject, SourcesListViewModel {
         }
 
         canLoad = false
-        DefaultAPI.theNewsApiSources { [weak self]  data, error in
 
-            if error == nil {
+        self.newsApi.fetchTheNewsApiSources { [weak self] response in
+            switch response {
+            case .success(let data):
                 self?.list.append(contentsOf: (data?.data ?? []))
-            } else {
+            case .failure(let error):
                 print("Error \(String(describing: error))")
             }
             self?.canLoad = true
-            
         }
+
+
+//        DefaultAPI.theNewsApiSources { [weak self]  data, error in
+//
+//            if error == nil {
+//                self?.list.append(contentsOf: (data?.data ?? []))
+//            } else {
+//                print("Error \(String(describing: error))")
+//            }
+//            self?.canLoad = true
+//
+//        }
 
     }
 }

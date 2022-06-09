@@ -11,6 +11,12 @@ import SwiftUI
 //ViewModel для запроса списка источников новостей на NewsApi.org
 //Без пейджинга
 class NewsApiSourcesViewModel : ObservableObject, SourcesListViewModel {
+
+    private let newsApi: NewsApi.Type
+    init(with newsApi: NewsApi.Type = DIContainer.shared.resolve(type: NewsApi.Type.self)!) {
+        self.newsApi = newsApi
+    }
+
     var list: [NewsApiSource] = []
     @Published var canLoad: Bool = true
 
@@ -20,17 +26,29 @@ class NewsApiSourcesViewModel : ObservableObject, SourcesListViewModel {
         }
 
         canLoad = false
-        DefaultAPI.newsApiSources { [weak self]  data, error in
 
-            if error == nil {
+        self.newsApi.fetchNewsApiSources { [weak self] response in
+            switch response {
+            case .success(let data):
                 self?.list.append(contentsOf: (data?.sources ?? []))
-            } else {
+            case .failure(let error):
                 print("Error \(String(describing: error))")
-
             }
             self?.canLoad = true
-
         }
+        self.canLoad = true
+
+//        DefaultAPI.newsApiSources { [weak self]  data, error in
+//
+//            if error == nil {
+//                self?.list.append(contentsOf: (data?.sources ?? []))
+//            } else {
+//                print("Error \(String(describing: error))")
+//
+//            }
+//            self?.canLoad = true
+//
+//        }
 
     }
 }

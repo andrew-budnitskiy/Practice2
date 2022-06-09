@@ -19,11 +19,14 @@ class TheNewsApiResultsViewModel : NewsListViewModel {
     var sourceName: String
     private var page: Int = 1
     private var totalCount: Int = .max
+    private let newsApi: NewsApi.Type
 
     init(withSource source: String,
-         withSourceName sourceName: String) {
+         withSourceName sourceName: String,
+         withApi newsApi: NewsApi.Type = DIContainer.shared.resolve(type: NewsApi.Type.self)!) {
         self.sourceId = source
         self.sourceName = sourceName
+        self.newsApi = newsApi
     }
 
     func fetchData() {
@@ -36,17 +39,32 @@ class TheNewsApiResultsViewModel : NewsListViewModel {
 
         canLoad = false
 
-            DefaultAPI.theNewsApiResults(page: self.page, domains: self.sourceId) { [weak self] data, error in
+        self.newsApi.fetchTheNewsApiResults(page: self.page, domains: self.sourceId, limit: 25) { [weak self] receivedData in
 
-                if error == nil {
-                    self?.totalCount = data?.meta?.found ?? .max
-                    self?.list.append(contentsOf: (data?.data ?? []))
-                    self?.page += 1
-                } else {
-                    print("Error \(String(describing: error))")
-                }
-                self?.canLoad = true
+            switch receivedData {
+
+            case .success(let data):
+                self?.totalCount = data?.meta?.found ?? .max
+                self?.list.append(contentsOf: (data?.data ?? []))
+                self?.page += 1
+            case .failure(let error):
+                print("Error \(String(describing: error))")
             }
+            self?.canLoad = true
+
+        }
+
+//            DefaultAPI.theNewsApiResults(page: self.page, domains: self.sourceId) { [weak self] data, error in
+//
+//                if error == nil {
+//                    self?.totalCount = data?.meta?.found ?? .max
+//                    self?.list.append(contentsOf: (data?.data ?? []))
+//                    self?.page += 1
+//                } else {
+//                    print("Error \(String(describing: error))")
+//                }
+//                self?.canLoad = true
+//            }
 
     }
 }
