@@ -11,7 +11,7 @@ import SwiftUI
 // Ячейка списка источников новостей.
 // Параметризована типом данных NewSourceType
 // и view списка новостей ResultsListType, который будет открыт при нажатии на нее
-struct NewsSourceCell<NewsSourceType: NewsSource, ResultsListType: View>: View {
+struct NewsSourceCell<NewsSourceType: NewsSourceProtocol, ResultsListType: View>: View {
 
     let data: NewsSourceType
     let resultsList: ResultsListType

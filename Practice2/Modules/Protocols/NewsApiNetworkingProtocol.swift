@@ -13,7 +13,7 @@ typealias NewsApiResultsResult = (Result<NewsApiResults?, Error>) -> Void
 typealias TheNewsApiSourcesResult = (Result<TheNewsApiSources?, Error>) -> Void
 typealias TheNewsApiResultsResult = (Result<TheNewsApiResults?, Error>) -> Void
 
-protocol NewsApi {
+protocol NewsApiNetworkingProtocol {
 
     static func fetchTheNewsApiSources(response: @escaping TheNewsApiSourcesResult)
     static func fetchTheNewsApiResults(page: Int,

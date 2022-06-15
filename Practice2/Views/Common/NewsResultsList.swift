@@ -10,7 +10,7 @@ import SwiftUI
 
 // Ячейка списка новостей.
 // Параметризована вьюмоделью, отвечающей за загрузку данных в список
-struct NewsResultsList<ViewModelType: NewsListViewModel>: View {
+struct NewsResultsList<ViewModelType: NewsListViewModelProtocol>: View {
 
     @ObservedObject var viewModel: ViewModelType
 

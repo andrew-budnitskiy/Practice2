@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol NewsListViewModel: ObservableObject {
+protocol NewsListViewModelProtocol: ObservableObject {
 
-    associatedtype ItemType: News & Hashable & Identifiable
+    associatedtype ItemType: NewsItemProtocol & Hashable & Identifiable
     var sourceName: String { get set }
     var canLoad: Bool { get set }
     var list: [ItemType] { get }

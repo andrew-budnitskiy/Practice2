@@ -43,7 +43,7 @@ public struct NewsApiSource: Codable, Identifiable {
 
 }
 
-extension NewsApiSource: NewsSource {
+extension NewsApiSource: NewsSourceProtocol {
 
     var title: String {
         return self.name.or("the news source title is empty")

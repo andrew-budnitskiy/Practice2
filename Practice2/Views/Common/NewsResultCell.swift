@@ -11,7 +11,7 @@ import SwiftUI
 // Ячейка новости.
 // Параметризована типом данных новости
 // Типы данных новости реализуют протокол, представляющий интерфейс, обрабатываемый этой ячейкой
-struct NewsResultCell<NewsType: News>: View, Identifiable {
+struct NewsResultCell<NewsType: NewsItemProtocol>: View, Identifiable {
 
     var id: String {
         return self.data.id as! String

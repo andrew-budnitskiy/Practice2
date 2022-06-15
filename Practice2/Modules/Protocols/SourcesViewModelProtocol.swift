@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol SourcesListViewModel {
+protocol SourcesListViewModelProtocol {
 
-    associatedtype NewsSourceType: NewsSource
+    associatedtype NewsSourceType: NewsSourceProtocol
     var canLoad: Bool { get set }
     var list: [NewsSourceType] { get set }
     func fetchData()

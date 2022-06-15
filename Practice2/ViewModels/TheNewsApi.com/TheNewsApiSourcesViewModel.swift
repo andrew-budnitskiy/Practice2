@@ -10,10 +10,10 @@ import SwiftUI
 
 //ViewModel для запроса списка источников новостей на TheNewsApi.com
 //Без пейджинга
-class TheNewsApiSourcesViewModel : ObservableObject, SourcesListViewModel {
+class TheNewsApiSourcesViewModel : ObservableObject, SourcesListViewModelProtocol {
 
-    private let newsApi: NewsApi.Type
-    init(with newsApi: NewsApi.Type = DIContainer.shared.resolve(type: NewsApi.Type.self)!) {
+    private let newsApi: NewsApiNetworkingProtocol.Type
+    init(with newsApi: NewsApiNetworkingProtocol.Type = DIContainer.shared.resolve(type: NewsApiNetworkingProtocol.Type.self)!) {
         self.newsApi = newsApi
     }
 

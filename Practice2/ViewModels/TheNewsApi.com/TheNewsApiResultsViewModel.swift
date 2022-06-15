@@ -10,7 +10,7 @@ import SwiftUI
 
 //ViewModel для запроса списка новостей на TheNewsApi.com
 //С пейджингом
-class TheNewsApiResultsViewModel : NewsListViewModel {
+class TheNewsApiResultsViewModel : NewsListViewModelProtocol {
 
     var list: [TheNewsApiResult] = []
     @Published var canLoad: Bool = true
@@ -19,11 +19,11 @@ class TheNewsApiResultsViewModel : NewsListViewModel {
     var sourceName: String
     private var page: Int = 1
     private var totalCount: Int = .max
-    private let newsApi: NewsApi.Type
+    private let newsApi: NewsApiNetworkingProtocol.Type
 
     init(withSource source: String,
          withSourceName sourceName: String,
-         withApi newsApi: NewsApi.Type = DIContainer.shared.resolve(type: NewsApi.Type.self)!) {
+         withApi newsApi: NewsApiNetworkingProtocol.Type = DIContainer.shared.resolve(type: NewsApiNetworkingProtocol.Type.self)!) {
         self.sourceId = source
         self.sourceName = sourceName
         self.newsApi = newsApi

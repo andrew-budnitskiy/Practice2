@@ -46,7 +46,7 @@ public struct NewsApiResult: Codable, Identifiable, Hashable {
 
 }
 
-extension NewsApiResult: News {
+extension NewsApiResult: NewsItemProtocol {
     var header: String {
         return self.title.or("the news header is empty")
     }

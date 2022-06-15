@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol News: Identifiable {
+protocol NewsItemProtocol: Identifiable {
 
     var header: String { get }
     var writer: String { get }

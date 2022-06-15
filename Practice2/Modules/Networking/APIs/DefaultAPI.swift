@@ -373,7 +373,7 @@ open class DefaultAPI {
     }
 }
 
-extension DefaultAPI: NewsApi {
+extension DefaultAPI: NewsApiNetworkingProtocol {
 
     static func fetchTheNewsApiSources(response: @escaping TheNewsApiSourcesResult) {
 
