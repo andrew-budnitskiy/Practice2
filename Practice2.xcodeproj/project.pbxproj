@@ -647,8 +647,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/andrew-budnitskiy/Package_Practice3.git";
 			requirement = {
-				kind = revision;
-				revision = d1ace5a609418551b43f516e307404681cfcba94;
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

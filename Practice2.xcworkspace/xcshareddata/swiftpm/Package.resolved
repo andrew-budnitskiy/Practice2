@@ -14,8 +14,8 @@
         "package": "Practice3Package",
         "repositoryURL": "https://github.com/andrew-budnitskiy/Package_Practice3.git",
         "state": {
-          "branch": null,
-          "revision": "d1ace5a609418551b43f516e307404681cfcba94",
+          "branch": "master",
+          "revision": "e094004dd442e0198c5c9fb2429d7454f5be49a2",
           "version": null
         }
       }
