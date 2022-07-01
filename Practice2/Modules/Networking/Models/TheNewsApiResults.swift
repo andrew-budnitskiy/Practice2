@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 public struct TheNewsApiResults: Codable {
 
     public var meta: TheNewsApiSourcesMeta?
