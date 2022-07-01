@@ -12,7 +12,11 @@ import SwiftUI
 //Без пейджинга
 class NewsApiSourcesViewModel : ObservableObject, SourcesListViewModelProtocol {
 
+    // Функционал сетевых запросов сведен к протокольному типу NewsApiNetworkingProtocol
     private let newsApi: NewsApiNetworkingProtocol.Type
+
+    // а конкретная реализация этого протокола передается через dependency injection по типу constructor injection
+    // по умолчанию значение берется из общего контейнера зависимостей
     init(with newsApi: NewsApiNetworkingProtocol.Type = DIContainer.shared.resolve(type: NewsApiNetworkingProtocol.Type.self)!) {
         self.newsApi = newsApi
     }

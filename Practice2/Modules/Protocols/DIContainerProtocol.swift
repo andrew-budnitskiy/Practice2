@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Протоколо для реализации DIContainer
 protocol DIContainerProtocol {
   func register<Component>(type: Component.Type, component: Any)
   func resolve<Component>(type: Component.Type) -> Component?

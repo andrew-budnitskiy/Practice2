@@ -17,6 +17,7 @@ import SwiftUI
 
 struct ContentView: View {
 
+    // использование pageCoordinator сведено к протокольному типу.
     private let pageCoordinator: PageCoordinatorProtocol!
     @State var selectedNewsSource: NewsItem?
 
@@ -25,6 +26,8 @@ struct ContentView: View {
             .padding()
     }
 
+    // а сам протокольный тип внедряется через constructor injection.
+    // значение по умолчанию берется из DIContainer.
     init(withPageCoordinator pageCoordinator: PageCoordinatorProtocol = DIContainer.shared.resolve(type: PageCoordinatorProtocol.self)!) {
         self.pageCoordinator = pageCoordinator
         self.selectedNewsSource = pageCoordinator.defaultPage

@@ -7,8 +7,10 @@
 
 import Foundation
 import Alamofire
+// Согласно заданию, сетевой слой низкого уровня весь вынесен в Swift Package - Practice3Package
 import Practice3Package
 
+// Дефолтный вариант реализации NewsApiNetworkingProtocol. Используется по умолчанию в DIContainer.
 open class DefaultAPI {
     /**
      Get news list

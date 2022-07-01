@@ -19,8 +19,12 @@ class TheNewsApiResultsViewModel : NewsListViewModelProtocol {
     var sourceName: String
     private var page: Int = 1
     private var totalCount: Int = .max
+
+    // Функционал сетевых запросов сведен к протокольному типу NewsApiNetworkingProtocol
     private let newsApi: NewsApiNetworkingProtocol.Type
 
+    // конкретная реализация сетевого функционала newsApi передается через dependency injection по типу constructor injection
+    // по умолчанию значение берется из общего контейнера зависимостей
     init(withSource source: String,
          withSourceName sourceName: String,
          withApi newsApi: NewsApiNetworkingProtocol.Type = DIContainer.shared.resolve(type: NewsApiNetworkingProtocol.Type.self)!) {
